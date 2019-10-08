@@ -1,0 +1,12 @@
+{
+    "name": "datagen",
+    "config": {
+      "connector.class": "io.confluent.kafka.connect.datagen.DatagenConnector",
+      "kafka.topic": "to-redis",
+      "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+      "value.converter": "org.apache.kafka.connect.storage.StringConverter",
+      "quickstart": "users",
+      "max.interval": 10000,
+      "iterations": 1000000
+    }
+}
