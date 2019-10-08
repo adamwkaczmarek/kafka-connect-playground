@@ -4,7 +4,7 @@
 
 * `docker-compose up -d --build`
 
-## Kafka Connect Workers configuration :
+## Configure Kafka Connect Workers
 
 * `curl -s -X POST -H 'Content-Type: application/json' --data @datagen-config.json http://localhost:8088/connectors`
 
