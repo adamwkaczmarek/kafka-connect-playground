@@ -1,7 +1,11 @@
-Connectors configuration :
+# Setup step by step
 
-curl -s -X POST -H 'Content-Type: application/json' --data @datagen-config.json http://localhost:8088/connectors
+## Run docker containers
 
-curl -s -X POST -H 'Content-Type: application/json' --data @redis-sink-config.json http://localhost:8088/connectors
+* `docker-compose up -d --build`
 
-curl -s -X GET  -H 'Content-Type: application/json' http://localhost:8088/connectors
+## Kafka Connect Workers configuration :
+
+* `curl -s -X POST -H 'Content-Type: application/json' --data @datagen-config.json http://localhost:8088/connectors`
+
+* `curl -s -X POST -H 'Content-Type: application/json' --data @redis-sink-config.json http://localhost:8088/connectors`
