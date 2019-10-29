@@ -4,8 +4,6 @@ services:
     image: confluentinc/cp-zookeeper:5.3.1
     hostname: zookeeper
     container_name: my-zookeeper
-    networks: 
-      - playground-network
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
@@ -15,8 +13,6 @@ services:
     container_name: my-broker
     depends_on:
       - zookeeper
-    networks: 
-      - playground-network
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
@@ -36,13 +32,9 @@ services:
     hostname: redis
     ports:
       - "6379:6379"
-    networks: 
-      - playground-network
   control-center:
     image: confluentinc/cp-enterprise-control-center:5.3.1
     hostname: control-center
-    networks:
-      - playground-network
     container_name: my-control-center
     depends_on:
       - zookeeper
@@ -63,8 +55,6 @@ services:
     image: confluentinc/cp-kafka:5.1.1
     hostname: kafka-setup
     container_name: my-kafka-setup
-    networks:
-      - playground-network
     depends_on:
       - broker
     command: "bash -c 'echo Waiting for Kafka to be ready... && \
@@ -85,9 +75,7 @@ services:
       - "8088:8088"
     depends_on:
       - broker
-      - kafka-setup  
-    networks:
-      - playground-network
+      - kafka-setup
     environment:
       CONNECT_BOOTSTRAP_SERVERS: broker:29092
       CONNECT_GROUP_ID: "connect-group" 
@@ -109,7 +97,3 @@ services:
       CLASSPATH: /usr/share/java/monitoring-interceptors/monitoring-interceptors-5.1.1.jar
       CONNECT_PRODUCER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringProducerInterceptor"
       CONNECT_CONSUMER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringConsumerInterceptor"
-
-networks:
-  playground-network:
-
