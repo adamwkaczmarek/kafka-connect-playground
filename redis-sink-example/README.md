@@ -1,4 +1,4 @@
-# Simple Kafka Connect example
+# Simple Kafka Connect Redis example
 In this example we will generating mock data using DataGen and streaming them to Redis (using Kafka Connect Redis).
 
 # Setup
